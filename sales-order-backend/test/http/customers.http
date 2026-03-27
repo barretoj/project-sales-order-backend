@@ -1,0 +1,52 @@
+@localhost=localhost:4004/odata/v4/main
+@id=550e8400-e29b-41d4-a716-446655440000
+
+GET http://{{localhost}}/Customers
+Content-Type: application/json
+
+###
+
+POST http://{{localhost}}/Customers
+Content-Type: application/json
+
+{
+    "id": "{{id}}",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "JOHN@GMAIL.COM"
+}
+
+###
+DELETE http://{{localhost}}/Customers(id={{id}})
+Content-Type: application/json
+
+{
+    "id": "{{id}}",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "JOHN@GMAIL.COM"
+}
+
+###
+PUT http://{{localhost}}/Customers(id='{{id}}')
+Content-Type: application/json
+
+{
+    "lastName": "Ramones"
+}
+
+###
+# Faz a atualização parcial do recurso, ou seja, somente o campo lastName será atualizado, os demais campos permanecerão com os mesmos valores.
+PATCH http://{{localhost}}/Customers(id='{{id}}')
+Content-Type: application/json
+
+{
+    "lastName": "Ramones"
+}
+
+# entity Customers {
+#     key id: UUID;
+#         firstName: String(20);
+#         lastName: String(100);
+#         email: String(255);
+# }
