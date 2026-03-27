@@ -1,0 +1,10 @@
+{
+    "[development]": {
+        "db": {
+            "credentials": {
+                "database": ":memory:"
+            },
+            "kind": "sqlite"
+        }
+    }
+}
