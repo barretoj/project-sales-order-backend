@@ -66,3 +66,13 @@ Content-Type: application/json
 # Buscar todos os pedidos menores ou iguais a 2 milhões
 GET http://{{localhost}}/SalesOrderHeaders?$filter=totalAmount le 20000000
 Content-Type: application/json
+
+###
+# Selecionar somente customer e id do sales order headers
+GET http://{{localhost}}/SalesOrderHeaders?$select=customer_id,id
+Content-Type: application/json
+
+###
+# Selecionnar com expand 
+GET http://{{localhost}}/SalesOrderHeaders?$select=id,customer&$expand=customer($select=id,email)
+Content-Type: application/json
