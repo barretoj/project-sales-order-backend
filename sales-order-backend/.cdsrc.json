@@ -5,6 +5,26 @@
                 "database": ":memory:"
             },
             "kind": "sqlite"
-        }
+        },
+        "auth": {
+            "kind": "basic",
+            "users": {
+                "jeff": {
+                    "password": "Inicial@123",
+                    "roles": ["admin"],
+                    "attr": {
+                        "id": 1,
+                        "groups": ["group1", "group2"]
+                    }
+                },
+                "carlos": {
+                    "password": "Inicial@123",
+                    "roles": ["read_only_user"],
+                    "attr": {
+                        "id": 2,
+                        "groups": ["group1"]
+                    }
+                }
+            }
     }
 }
