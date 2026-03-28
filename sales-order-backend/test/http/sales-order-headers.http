@@ -5,9 +5,9 @@
 @customerId=550e8400-e29b-41d4-a716-446655440000
 
 # Produto sem estoque
-@productId1=31590082-9d0f-49ab-93b4-c56fba21b684
+@productId1=29491592-c3fb-41dd-a0be-84b4fe13194f
 
-@productId2=24351482-3ca5-4a00-8f8a-43fe671c0702
+@productId2=17693399-cfc2-4ebd-bd8f-03a3c5938c29
 
 GET http://{{localhost}}/SalesOrderHeaders
 Content-Type: application/json
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 {
     "id": "{{id}}",
-    "customer_id": "{{customerId}}",
+    "customer_id": "27981940-4ae4-40c6-804b-d3769c9006f7",
     "totalAmount": 398,
     "items": [
         {
