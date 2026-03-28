@@ -1,0 +1,38 @@
+@localhost=localhost:4004/odata/v4/main
+
+@id=6b511657-b886-4e90-bb7b-06ee9dbd1383
+
+GET http://{{localhost}}/Products
+Content-Type: application/json
+
+###
+
+POST http://{{localhost}}/Products
+Content-Type: application/json
+
+    {
+        # "id": "6b511657-b886-4e90-bb7b-06ee9dbd1383",
+      "id": "{{id}}",
+      "name": "Iphone 14 Pro Max",
+      "price": 8999.99,
+      "stock": 102
+    }
+
+###
+DELETE http://{{localhost}}/Products(id={{id}})
+Content-Type: application/json
+
+###
+PATCH http://{{localhost}}/Products(id={{id}})
+Content-Type: application/json 
+    
+{
+    "price": 7999.99
+}
+
+# entity Products {
+#     key id: UUID;
+#         name: String(255);
+#         price: Decimal(15, 2);
+#         stock: Integer
+# }
