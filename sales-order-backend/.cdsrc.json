@@ -10,7 +10,7 @@
             "kind": "basic",
             "users": {
                 "jeff": {
-                    "password": "Inicial@123",
+                    "password": "Inicial123",
                     "roles": ["admin"],
                     "attr": {
                         "id": 1,
@@ -18,7 +18,7 @@
                     }
                 },
                 "carlos": {
-                    "password": "Inicial@123",
+                    "password": "Inicial123",
                     "roles": ["read_only_user"],
                     "attr": {
                         "id": 2,
@@ -26,5 +26,6 @@
                     }
                 }
             }
+        }
     }
 }
