@@ -91,3 +91,8 @@ Content-Type: application/json
 # Paginação - buscar os próximos três registros
 GET http://{{localhost}}/SalesOrderHeaders?$top=3&$skip=5
 Content-Type: application/json
+
+###
+# Buscando dados com o $search
+GET http://{{localhost}}/SalesOrderHeaders?$search=403c
+Content-Type: application/json
