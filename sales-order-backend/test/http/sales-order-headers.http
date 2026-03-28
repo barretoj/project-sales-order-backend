@@ -76,3 +76,18 @@ Content-Type: application/json
 # Selecionnar com expand 
 GET http://{{localhost}}/SalesOrderHeaders?$select=id,customer&$expand=customer($select=id,email)
 Content-Type: application/json
+
+###
+# Descobrindo a quantidade de registros
+GET http://{{localhost}}/SalesOrderHeaders/$count
+Content-Type: application/json
+
+###
+# Buscar os cinco registros
+GET http://{{localhost}}/SalesOrderHeaders?$top=5
+Content-Type: application/json
+
+###
+# Paginação - buscar os próximos três registros
+GET http://{{localhost}}/SalesOrderHeaders?$top=3&$skip=5
+Content-Type: application/json
