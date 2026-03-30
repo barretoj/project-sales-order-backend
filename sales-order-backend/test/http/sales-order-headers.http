@@ -11,12 +11,12 @@
 
 GET http://{{localhost}}/SalesOrderHeaders
 Content-Type: application/json
-# Authorization: Basic jeff:jeff
+Authorization: Basic camila:camila
 ###
 
 GET http://{{localhost}}/SalesOrderHeaders?$filter=id eq {{id}}&$expand=items
 Content-Type: application/json
-# Authorization: Basic camila:camila
+Authorization: Basic camila:camila
 
 ###
 
@@ -50,7 +50,6 @@ Authorization: Basic jeff:jeff
 DELETE http://{{localhost}}/SalesOrderHeaders(id={{id}})
 Content-Type: application/json
 Authorization: Basic jeff:jeff
-{}
 
 ###
 

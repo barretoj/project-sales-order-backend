@@ -1,5 +1,6 @@
 import cds, { Request, Service } from '@sap/cds';
 import { Customers, Product, Products, SalesOrderHeaders, SalesOrderIten, SalesOrderItens } from '@models/sales';
+import { request } from 'axios';
 
 export default (service : Service) => {
     service.before('READ', '*', (request: Request) => {
@@ -49,9 +50,15 @@ export default (service : Service) => {
         items.forEach(item => {
             totalAmount += (item.quantity as number) * (item.price as number);
         });
+        console.log('Total Amount before discount:', totalAmount);
+        if (totalAmount > 30000) {
+            const discount = totalAmount * (10/100);
+            totalAmount -= discount;
+        }
+        console.log('Total Amount after discount:', totalAmount);
         request.data.totalAmount = totalAmount;
     });
-    service.after('CREATE', 'SalesOrderHeaders', async (results: SalesOrderHeaders) => {
+    service.after('CREATE', 'SalesOrderHeaders', async (results: SalesOrderHeaders, request: Request) => {
         const headerAsArray = Array.isArray(results) ? results : [results] as SalesOrderHeaders;
         for (const header of headerAsArray) {
             const items = header.items as SalesOrderItens;
@@ -67,7 +74,15 @@ export default (service : Service) => {
                 foundProduct.stock = (foundProduct.stock as number) - productData.quantity;
                 await cds.update('sales.Products').where({ id: foundProduct.id }).with({ stock: foundProduct.stock });
             }
+            const headerAsString = JSON.stringify(header);
+            const userAsString = JSON.stringify(request.user);
+            const log = [{
+                header_id: header.id,
+                userData: userAsString,
+                orderData: headerAsString
+            }]
+            await cds.create('sales.SalesOrderLogs').entries(log);
+            console.log(log);
         }
     });
-
 };
