@@ -3,7 +3,7 @@
     "requires": {
       "db": {
         "credentials": {
-          "database": ":memory:"
+          "url": ":memory:"
         },
         "kind": "sqlite"
       },
@@ -15,7 +15,7 @@
             "roles": ["admin"],
             "attr": {
               "id": 1,
-              "groups": ["group1", "group2"]
+              "groups": ["grupo1", "grupo2"]
             }
           },
           "camila": {
@@ -23,7 +23,7 @@
             "roles": ["read_only_user"],
             "attr": {
               "id": 2,
-              "groups": ["group1"]
+              "groups": ["grupo1"]
             }
           }
         }

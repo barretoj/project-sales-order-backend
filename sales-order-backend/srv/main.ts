@@ -3,14 +3,15 @@ import { Customers, Product, Products, SalesOrderHeaders, SalesOrderIten, SalesO
 
 export default (service : Service) => {
     service.before('READ', '*', (request: Request) => {
-        console.log(request.user);
-        console.log(request.user.roles);
+     if (!request.user.is('read_only_user')) {
+        return request.reject(403, 'Unauthorized access to read');
+        }  
     });
-    // service.before(['WRITE', 'DELETE'], '*', (request: Request) => {
-    //     if (!request.user.is('admin')) {
-    //         return request.reject(403, 'Unauthorized access to write or delete');
-    //     }
-    // });
+    service.before(['WRITE', 'DELETE'], '*', (request: Request) => {
+        if (!request.user.is('admin')) {
+            return request.reject(403, 'Unauthorized access to write or delete');
+        }
+    });
     service.after('READ', 'Customers', (results: Customers) => {
         results.forEach(customer => {
             if (customer.email && !customer.email?.includes('@')) {

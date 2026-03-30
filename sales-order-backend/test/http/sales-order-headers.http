@@ -16,7 +16,7 @@ Authorization: Basic jeff:jeff
 
 GET http://{{localhost}}/SalesOrderHeaders?$filter=id eq {{id}}&$expand=items
 Content-Type: application/json
-Authorization: Basic jeff:jeff
+Authorization: Basic camila:camila
 
 ###
 
