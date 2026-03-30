@@ -49,7 +49,7 @@ export default (service : Service) => {
         items.forEach(item => {
             totalAmount += (item.quantity as number) * (item.price as number);
         });
-        console.log(`Total amount for the order: ${totalAmount}`); // Log the total amount for debugging purposes
+        request.data.totalAmount = totalAmount;
     });
     service.after('CREATE', 'SalesOrderHeaders', async (results: SalesOrderHeaders) => {
         const headerAsArray = Array.isArray(results) ? results : [results] as SalesOrderHeaders;

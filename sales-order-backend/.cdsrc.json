@@ -14,7 +14,7 @@
             "password": "jeff",
             "roles": ["admin"],
             "attr": {
-              "id": 1,
+              "id": "1",
               "groups": ["grupo1", "grupo2"]
             }
           },
@@ -22,7 +22,7 @@
             "password": "camila",
             "roles": ["read_only_user"],
             "attr": {
-              "id": 2,
+              "id": "2",
               "groups": ["grupo1"]
             }
           }
