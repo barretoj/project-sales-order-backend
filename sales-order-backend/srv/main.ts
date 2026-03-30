@@ -3,15 +3,14 @@ import { Customers, Product, Products, SalesOrderHeaders, SalesOrderIten, SalesO
 
 export default (service : Service) => {
     service.before('READ', '*', (request: Request) => {
-        if (!request.user.is('read_only_user')) {
-            return request.reject(403, 'Access not authorized');
-        }
+        console.log(request.user);
+        console.log(request.user.roles);
     });
-    service.before(['WRITE', 'DELETE'], '*', (request: Request) => {
-        if (!request.user.is('admin')) {
-            return request.reject(403, 'Unauthorized access to write or delete');
-        }
-    });
+    // service.before(['WRITE', 'DELETE'], '*', (request: Request) => {
+    //     if (!request.user.is('admin')) {
+    //         return request.reject(403, 'Unauthorized access to write or delete');
+    //     }
+    // });
     service.after('READ', 'Customers', (results: Customers) => {
         results.forEach(customer => {
             if (customer.email && !customer.email?.includes('@')) {
@@ -45,6 +44,11 @@ export default (service : Service) => {
                 return request.reject(400, `Product with ID ${item.product_id} is out of stock`);
             }
         }
+        let totalAmount = 0;
+        items.forEach(item => {
+            totalAmount += (item.quantity as number) * (item.price as number);
+        });
+        console.log(`Total amount for the order: ${totalAmount}`); // Log the total amount for debugging purposes
     });
     service.after('CREATE', 'SalesOrderHeaders', async (results: SalesOrderHeaders) => {
         const headerAsArray = Array.isArray(results) ? results : [results] as SalesOrderHeaders;

@@ -11,17 +11,19 @@
 
 GET http://{{localhost}}/SalesOrderHeaders
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic jeff:jeff
 ###
 
 GET http://{{localhost}}/SalesOrderHeaders?$filter=id eq {{id}}&$expand=items
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic jeff:jeff
+
 ###
 
 POST http://{{localhost}}/SalesOrderHeaders
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic jeff:jeff
+
 {
     "id": "{{id}}",
     "customer_id": "27981940-4ae4-40c6-804b-d3769c9006f7",
@@ -48,53 +50,68 @@ Authorization: Basic carlos:Inicial123
 
 DELETE http://{{localhost}}/SalesOrderHeaders(id={{id}})
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic jeff:jeff
 {}
 
 ###
+
 PUT http://{{localhost}}/SalesOrderHeaders(id={{id}})
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic camila:camila
 {}
 
 ###
+
 # Buscar todos os pedidos maiores ou iguais a 2 milhões
 GET http://{{localhost}}/SalesOrderHeaders?$filter=totalAmount ge 20000000
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic camila:camila
 
 ###
+
 # Buscar todos os pedidos menores ou iguais a 2 milhões
 GET http://{{localhost}}/SalesOrderHeaders?$filter=totalAmount le 20000000
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic camila:camila
+
 ###
+
 # Selecionar somente customer e id do sales order headers
 GET http://{{localhost}}/SalesOrderHeaders?$select=customer_id,id
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic camila:camila
+
 ###
+
 # Selecionnar com expand 
 GET http://{{localhost}}/SalesOrderHeaders?$select=id,customer&$expand=customer($select=id,email)
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic camila:camila
+
 ###
+
 # Descobrindo a quantidade de registros
 GET http://{{localhost}}/SalesOrderHeaders/$count
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic camila:camila
+
 ###
+
 # Buscar os cinco registros
 GET http://{{localhost}}/SalesOrderHeaders?$top=5
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic camila:camila
+
 ###
+
 # Paginação - buscar os próximos três registros
 GET http://{{localhost}}/SalesOrderHeaders?$top=3&$skip=5
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic camila:camila
+
 ###
+
 # Buscando dados com o $search
 GET http://{{localhost}}/SalesOrderHeaders?$search=403c
 Content-Type: application/json
-Authorization: Basic carlos:Inicial123
+Authorization: Basic camila:camila

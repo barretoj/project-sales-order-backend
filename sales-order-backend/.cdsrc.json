@@ -1,31 +1,33 @@
 {
-    "[development]": {
-        "db": {
-            "credentials": {
-                "database": ":memory:"
-            },
-            "kind": "sqlite"
+  "[development]": {
+    "requires": {
+      "db": {
+        "credentials": {
+          "database": ":memory:"
         },
-        "auth": {
-            "kind": "basic",
-            "users": {
-                "jeff": {
-                    "password": "Inicial123",
-                    "roles": ["admin"],
-                    "attr": {
-                        "id": 1,
-                        "groups": ["group1", "group2"]
-                    }
-                },
-                "carlos": {
-                    "password": "Inicial123",
-                    "roles": ["read_only_user"],
-                    "attr": {
-                        "id": 2,
-                        "groups": ["group1"]
-                    }
-                }
+        "kind": "sqlite"
+      },
+      "auth": {
+        "kind": "basic",
+        "users": {
+          "jeff": {
+            "password": "jeff",
+            "roles": ["admin"],
+            "attr": {
+              "id": 1,
+              "groups": ["group1", "group2"]
             }
+          },
+          "camila": {
+            "password": "camila",
+            "roles": ["read_only_user"],
+            "attr": {
+              "id": 2,
+              "groups": ["group1"]
+            }
+          }
         }
+      }
     }
+  }
 }
