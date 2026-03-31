@@ -1,6 +1,8 @@
 import cds, { Request, Service } from '@sap/cds';
 import { Customers, Product, Products, SalesOrderHeaders, SalesOrderIten, SalesOrderItens } from '@models/sales';
 import { request } from 'axios';
+import { FullRequestParams } from './protocols';
+import { customerController } from './factories/controllers/customer';
 
 export default (service : Service) => {
     service.before('READ', '*', (request: Request) => {
@@ -13,12 +15,8 @@ export default (service : Service) => {
             return request.reject(403, 'Unauthorized access to write or delete');
         }
     });
-    service.after('READ', 'Customers', (results: Customers) => {
-        results.forEach(customer => {
-            if (customer.email && !customer.email?.includes('@')) {
-                customer.email = `${customer.email}@gmail.com`;
-            }
-        });
+    service.after('READ', 'Customers', (customersList: Customers, request) => {
+        (request as unknown as FullRequestParams<Customers>).results = customerController.afterRead(customersList);
     });
     service.before('CREATE', 'SalesOrderHeaders', async (request: Request) => {
         const params = request.data;
